@@ -1,6 +1,8 @@
 /* DECLARAÇÃO GENÉRICA */
 @import url(https://db.onlinewebfonts.com/c/6b22dc1202b5d1a57bcff9d24a1ea5da?family=Krona+One);
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     font-family: "Krona One";
     user-select: none;
@@ -87,6 +89,7 @@ a {
 }
 
 .ul-nav > *:hover{
+    cursor: pointer;
     color: white;
     padding-left: 5px;
     padding-right: 5px;
@@ -142,6 +145,19 @@ header > a:hover{
     transition: 0.5s;
 }
 main{
+    user-select: text;
     height: 500vh;
     width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+    flex-direction: column;
+}
+main > h1{
+    color: white;
+    font-size: 4em;
+}
+main > [class$="Content"] > h1{
+    color: white;
+    font-size: 2.8em;
 }
