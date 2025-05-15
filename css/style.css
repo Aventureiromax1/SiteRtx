@@ -1,10 +1,10 @@
 /* DECLARAÇÃO GENÉRICA */
-
+@import url(https://db.onlinewebfonts.com/c/6b22dc1202b5d1a57bcff9d24a1ea5da?family=Krona+One);
 
 body{
+    font-family: "Krona One";
     user-select: none;
-    height: 100dvh;
-    background-color: rgb(255, 255, 255);
+    background-color: #2a2a2a;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,7 +12,6 @@ body{
     padding-top: 0px;
     padding-left: 0px;
     margin: 0px;
-    font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 footer{
@@ -30,7 +29,10 @@ footer span{
 
 
 nav{
-    width: 35%;
+    width: 50%;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
 }
 
 nav ul{ 
@@ -40,7 +42,6 @@ nav ul{
     display: flex;
     justify-content: space-around;
     align-items: center;
-  
     padding: 0px;
     box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.7);
     visibility: hidden;
@@ -60,6 +61,7 @@ nav ul{
     visibility: visible;
     overflow: hidden;
     transition: 0.5s;
+    color: gray;
 }
 
 
@@ -74,12 +76,14 @@ a {
     align-self: center;
     text-align: center;
     transition: 0.5s;
+    padding: 3px;
 }
 
 
 .ul-nav:hover > *{
     transform: scale(0.9);
     opacity: 0.4;
+    color: gray;
 }
 
 .ul-nav > *:hover{
@@ -89,6 +93,55 @@ a {
     gap: 0px;
     transform: scale(1.1);
     opacity: 1.0;
-    filter: invert();
 }
 
+header{
+    color: white;
+    position: relative;
+    top: 0px;
+    background-image: url(../img/intro.png);
+    background-position: 50% 65%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+header > p{
+    font-family: "Krona One";
+    font-size: 8em;
+    text-align: center;
+    color: white;
+    text-shadow: 10px 10px 10px rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    
+}
+header > a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 100px;
+    color: gray;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50px;
+    text-align: center;
+    text-size-adjust: 2em;
+    border: 4px solid darkgray;
+    cursor: pointer;
+}
+header > a:hover{
+    background-color: darkgray;
+    color: white;
+    transition: 0.5s;
+}
+main{
+    height: 500vh;
+    width: 100%;
+}
