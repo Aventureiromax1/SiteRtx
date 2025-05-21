@@ -49,6 +49,7 @@ nav ul{
     visibility: hidden;
 }
 
+
 .li-nav{
     position: relative;
     box-sizing: border-box;
@@ -77,8 +78,8 @@ a {
 .li-nav span{
     align-self: center;
     text-align: center;
-    transition: 0.5s;
     padding: 3px;
+    transition: 0.5s;
 }
 
 
@@ -113,12 +114,11 @@ header{
     align-items: center;
     display: flex;
 }
-header > p{
+header > h1{
     font-family: "Krona One";
     font-size: 8em;
     text-align: center;
     color: white;
-    text-shadow: 10px 10px 10px rgb(0, 0, 0);
     margin: 0px;
     padding: 0px;
     
@@ -137,15 +137,16 @@ header > a{
     text-align: center;
     text-size-adjust: 2em;
     border: 4px solid darkgray;
-    cursor: pointer;
+    transition: 0.5s;
+   
 }
 header > a:hover{
     background-color: darkgray;
     color: white;
-    transition: 0.5s;
+    transition: 0.5s; 
+    cursor: pointer;
 }
 main{
-    user-select: text;
     height: 300vh;
     width: 100%;
     display: flex;
@@ -153,28 +154,44 @@ main{
     padding-top: 50px;
     flex-direction: column;
 }
+
 main > h1{
     color: white;
-    font-size: 4em;
 }
-main > [class$="Content"] > h1{
-    color: white;
-    font-size: 2.8em;
-    text-align: center;
+
+main > .href-Content h1{
+    user-select: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 3em;
 }
+
+
 /*Article*/
 .content{
     display: flex;
     flex-direction: row;
-
 }
+
+.href-Content:hover > h1{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+
 #articleBlock{
     width: 300px;
     height: 300px;
     background-color: #7d7d7d;
     margin-right: 20px;
-    border: #1a1a1a solid 5px;
+    border: #1a1a1a solid 1px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
     border-radius: 16px;
+}
+
+#articlesContent > h1{
+    text-align: center;
+    color: white;
 }
 
 /* FAQ */
@@ -185,10 +202,16 @@ main > [class$="Content"] > h1{
     width: 70%;
     height: 100vh;
     position: relative;
+    transition: 0.5s;
 }
+
+.faqContent > h1{
+    color: white;
+}
+
 .faqContent > [id^="faq"]{
     background-color: #7d7d7d;
-    border: #1a1a1a solid 5px;
+    border: #1a1a1a solid 1px;
     border-radius: 4px;
     width: 100%;
     margin-bottom: 10px;
@@ -198,6 +221,7 @@ main > [class$="Content"] > h1{
     justify-content: center;
     position: relative;
     transition: 0.5s;
+    /*no seu tempo*/
 }
 [id^="faq"] a {
     display: flex;
@@ -220,6 +244,7 @@ main > [class$="Content"] > h1{
 a i{
     opacity: 0;
     color: white;
+    transition: 0.5s;
 }
 [id^="faq"] a:hover{
     background-color: #1a1a1a;
@@ -232,5 +257,4 @@ a:hover i{
 }
 a:hover span {
     padding-left: 0px;
-    transition: 0.5s;
 }
