@@ -114,15 +114,11 @@ header{
     align-items: center;
     display: flex;
 }
+
 header > h1{
-    font-family: "Krona One";
-    font-size: 8em;
-    text-align: center;
-    color: white;
-    margin: 0px;
-    padding: 0px;
-    
+
 }
+
 header > a{
     display: flex;
     align-items: center;
@@ -163,9 +159,25 @@ main > .href-Content h1{
     user-select: pointer;
     color: rgb(255, 255, 255);
     font-size: 3em;
+    display: flex;
+    justify-content: center;
+    
 }
-
-
+.href-Content:not(h1){
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#aboutContent > .content{
+    color: white;
+    width: 50%;
+    justify-content: center;
+    gap: 50px;
+}
+#aboutContent > .content > p{
+    width: 50%;
+    text-align: justify;
+}
 /*Article*/
 .content{
     display: flex;
@@ -178,20 +190,46 @@ main > .href-Content h1{
 }
 
 
-
 #articleBlock{
     width: 300px;
     height: 300px;
     background-color: #7d7d7d;
     margin-right: 20px;
     border: #1a1a1a solid 1px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 4px 8px #000000b3;
     border-radius: 16px;
+    transition: 0.5s;
 }
 
 #articlesContent > h1{
     text-align: center;
     color: white;
+}
+#articlesContent > .content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+#articlesContent #articleBlock:hover{
+    cursor: pointer;
+    scale: 1.05;
+    background-color: #1a1a1a;
+    transition: 0.5s;
+}
+#articlesContent i{
+    color: white;
+    font-size: 5em;
+    transition: 0.5s;
+    filter:drop-shadow(2px 4px 8px #000000b3);
+}
+#articlesContent i:hover{
+    cursor: pointer;
+    color: #7d7d7d;
+    transition: 0.5s;
+    filter:drop-shadow(2px 4px 8px #000000b3);
+    
 }
 
 /* FAQ */
@@ -257,4 +295,16 @@ a:hover i{
 }
 a:hover span {
     padding-left: 0px;
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(15px);
+    transform: translateX(-100%);
+    transition: all 1s ease;
+}
+
+.show {
+    filter: blur(0px);
+    transform: translateX(0px);
 }
