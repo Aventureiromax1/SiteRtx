@@ -143,7 +143,7 @@ header > a:hover{
     cursor: pointer;
 }
 main{
-    height: 300vh;
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -177,11 +177,18 @@ main > .href-Content h1{
 #aboutContent > .content > p{
     width: 50%;
     text-align: justify;
+    font-size: 1.2em;
 }
-/*Article*/
+/*WorksContent*/
+ #worksContent{
+    width: 50%;
+ }
+
 .content{
     display: flex;
     flex-direction: row;
+    color: white;
+    width: 100%;
 }
 
 .href-Content:hover > h1{
@@ -189,7 +196,13 @@ main > .href-Content h1{
     text-decoration: underline;
 }
 
+#worksContent p{
+    text-align: justify;
+    font-size: 1.2em
+}
 
+/*WorksContent*/
+/*Article*/
 #articleBlock{
     width: 300px;
     height: 300px;
@@ -205,7 +218,7 @@ main > .href-Content h1{
     text-align: center;
     color: white;
 }
-#articlesContent > .content{
+#articlesContent > .Articlescontent{
     display: flex;
     flex-direction: row;
     justify-content: center;

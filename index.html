@@ -1,100 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js"></script>
-    <script src="https://kit.fontawesome.com/4ec170f2bb.js" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+      src="https://kit.fontawesome.com/4ec170f2bb.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ray-Tracing</title>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <nav>
-        <ul class="ul-nav">
-            <li class="li-nav"><span>Home</span><i class="fa-solid fa-house"></i></li>
-            <li class="li-nav"><span href="#about">About</span><i class="fa-solid fa-file-lines"></i></li>
-            <li class="li-nav"><span>Perfil</span><i class="fa-solid fa-user"></i></li>
-            <li class="li-nav"><span>Menu</span><i class="fa-solid fa-bars"></i></li>
-        </ul>
-        <hr>
+      <ul class="ul-nav">
+        <li class="li-nav">
+          <span>Home</span><i class="fa-solid fa-house"></i>
+        </li>
+        <li class="li-nav">
+          <span href="#about">About</span><i class="fa-solid fa-file-lines"></i>
+        </li>
+        <li class="li-nav">
+          <span>Perfil</span><i class="fa-solid fa-user"></i>
+        </li>
+        <li class="li-nav">
+          <span>Menu</span><i class="fa-solid fa-bars"></i>
+        </li>
+      </ul>
+      <hr />
     </nav>
     <header>
-        <h1 class = "hidden">RAY TRACING</h1>
-        <a href="#about"><span>Saiba Mais</span></a>
+      <h1 class="hidden">RAY TRACING</h1>
+      <a href="#about"><span>Saiba Mais</span></a>
     </header>
     <main>
-        <div id="aboutContent" class="href-Content">
-            <h1>o que é</h1>
-            <div class="content">
-                <iframe width="80%" src="https://www.youtube.com/embed/reKTEm4Ej8s?autoplay=1&loop=1&controls=0&mute=1&disablekb=1&rel=0&showinfo=0" title="Cyberpunk 2077 Photorealistic Mods: You dont need a RTX 5090 for Ultra Realistic Graphics" frameborder="0" allow="autoplay;"></iframe>
-                <p>Ray tracing é uma técnica de renderização que simula o comportamento real da luz para criar imagens
-                    com reflexos, sombras e iluminação extremamente realistas. Ao invés de apenas desenhar os objetos na
-                    tela, ela calcula como os raios de luz interagem com cada superfície da cena. Muito usado em filmes,
-                    jogos e arquitetura, o ray tracing proporciona um visual mais natural e imersivo.</p>
-            </div>
+      <div id="aboutContent" class="href-Content">
+        <h1>o que é</h1>
+        <div class="content">
+          <iframe
+            width="80%"
+            style="border-radius: 16px; pointer-events: none; overflow: hidden"
+            src="https://www.youtube.com/embed/reKTEm4Ej8s?autoplay=1&loop=1&controls=0&mute=1&disablekb=1&rel=0&showinfo=0&playlist=reKTEm4Ej8s"
+            title="Cyberpunk 2077 Photorealistic Mods: You dont need a RTX 5090 for Ultra Realistic Graphics"
+            frameborder="0"
+            allow="autoplay;"
+            >video de cyberpunk com Ray-Tracing</iframe
+          >
+          <p>
+            Ray tracing é uma técnica de renderização que simula o comportamento
+            real da luz para criar imagens com reflexos, sombras e iluminação
+            extremamente realistas. Ao invés de apenas desenhar os objetos na
+            tela, ela calcula como os raios de luz interagem com cada superfície
+            da cena. Muito usado em filmes, jogos e arquitetura, o ray tracing
+            proporciona um visual mais natural e imersivo.
+          </p>
         </div>
-        <div id="worksContent" class="href-Content">
-            <h1>como funciona</h1>
+      </div>
+      <div id="worksContent" class="href-Content">
+        <h1>como funciona</h1>
+        <h2>Principio do traçado inverso</h2>
+        <div class="content">
+          <p>
+            Diferente do fluxo natural da luz <br />(fonte → objeto →
+            observador),<br />
+            o Ray Tracing opera de forma inversa por razões de eficiência
+            computacional. Raios são projetados a partir da câmera virtual,
+            atravessam os pixels da tela e penetram na cena 3D, traçando o
+            caminho da luz de volta à sua origem.
+          </p>
+          <img
+            src="./img/light_raytracing.png"
+            alt=""
+            height="50%"
+            width="50%"
+            style="border-radius: 16px; margin-left: 20px"
+          />
         </div>
-        <div id="usesContent" class="href-Content">
-            <h1>onde é usado</h1>
+        <h2>Etapa 1</h2>
+        <h3>Geração do Raio Primario</h3>
+        <p>
+          O processo começa com a emissão dos "raios primários". Para cada pixel
+          que comporá a imagem, um raio é lançado da posição da câmera, seguindo
+          uma linha reta através daquele pixel específico. Esse raio inicial
+          viaja pelo ambiente 3D até encontrar o primeiro obstáculo em seu
+          caminho.
+        </p>
+        <img
+          src="./img/raio_primario.png"
+          alt=""
+          height="50%"
+          width="50%"
+          style="border-radius: 16px; margin-left: 20px"
+        />
+        <h2>Etapa 2</h2>
+        <h3>Interseção com Objetos</h3>
+        <div class="content">
+          <p>
+            Quando um raio primário atinge um objeto, o sistema calcula o ponto
+            exato dessa colisão. É fundamental identificar qual objeto foi
+            atingido e o local preciso da interseção, pois é a partir deste
+            ponto que as propriedades visuais serão determinadas. Em cenas
+            complexas, algoritmos otimizados são usados para encontrar essas
+            interseções rapidamente.
+          </p>
+          <img
+            src="./img/intersecao.png"
+            alt=""
+            height="50%"
+            width="50%"
+            style="border-radius: 16px; margin-left: 20px"
+          />
         </div>
-        <div id="techContent" class="href-Content">
-            <h1>tecnologia</h1>
+        <h2>Etapa 3</h2>
+        <h3>Calculando a cor e os raios secundários</h3>
+        <p>
+          No ponto de interseção, a cor final é calculada com base nas
+          características do material (sua cor, textura, se é fosco ou
+          brilhante) e na forma como a luz o atinge. Para descobrir como a luz
+          chega ali, novos raios (secundários) são lançados:
+        </p>
+        <div class="content">
+          <img src="" alt="" />
+          <p>
+            Raios de Sombra: Vão em direção às fontes de luz para ver se o ponto
+            está iluminado ou bloqueado.
+          </p>
+          <p>
+            Raios de Reflexo: Seguem a direção do reflexo para capturar o que a
+            superfície espelha.
+          </p>
+          <p>
+            Raios de Refração: Atravessam objetos transparentes para ver o que
+            está do outro lado. Esses raios secundários podem gerar outros
+            raios, num processo recursivo que constrói a iluminação da cena.
+          </p>
         </div>
-        <div id="benchmarkContent" class="href-Content">
-            <h1>benchmark</h1>
+      </div>
+      <div id="usesContent" class="href-Content">
+        <h1>onde é usado</h1>
+      </div>
+      <div id="techContent" class="href-Content">
+        <h1>tecnologia</h1>
+      </div>
+      <div id="benchmarkContent" class="href-Content">
+        <h1>benchmark</h1>
+      </div>
+      <div id="howdoContent" class="href-Content">
+        <h1>como fazer</h1>
+      </div>
+      <div id="devsContent" class="href-Content">
+        <h1>para desenvolvedores</h1>
+      </div>
+      <div id="articlesContent">
+        <h1>artigos</h1>
+        <div class="Articlescontent">
+          <i class="fa-solid fa-arrow-left"></i>
+          <div id="articleBlock"></div>
+          <div id="articleBlock"></div>
+          <i class="fa-solid fa-arrow-right"></i>
         </div>
-        <div id="howdoContent" class="href-Content">
-            <h1>como fazer</h1>
+      </div>
+      <div class="faqContent">
+        <h1>FAQ</h1>
+        <div id="faq1">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>adads</span></a
+          >
         </div>
-        <div id="devsContent" class="href-Content">
-            <h1>para desenvolvedores</h1>
+        <div id="faq2">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>a</span></a
+          >
         </div>
-        <div id="articlesContent">
-            <h1>artigos</h1>
-            <div class="content">
-                <i class="fa-solid fa-arrow-left"></i>
-                <div id="articleBlock"></div>
-                <div id="articleBlock"></div>
-                <i class="fa-solid fa-arrow-right"></i>
-            </div>
+        <div id="faq3">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>b</span></a
+          >
         </div>
-        <div class="faqContent">
-            <h1>FAQ</h1>
-            <div id="faq1">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>adads</span></a>
-            </div>
-            <div id="faq2">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>a</span></a>
-            </div>
-            <div id="faq3">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>b</span></a>
-            </div>
-            <div id="faq4">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>c</span></a>
-            </div>
-            <div id="faq5">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>d</span></a>
-            </div>
-            <div id="faq6">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>e</span></a>
-            </div>
-            <div id="faq7">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>f</span></a>
-            </div>
-            <div id="faq8">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>g</span></a>
-            </div>
-            <div id="faq9">
-                <a href="" id="faq"><i class="fa-solid fa-chevron-down"></i><span>h</span></a>
-            </div>
+        <div id="faq4">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>c</span></a
+          >
         </div>
+        <div id="faq5">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>d</span></a
+          >
+        </div>
+        <div id="faq6">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>e</span></a
+          >
+        </div>
+        <div id="faq7">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>f</span></a
+          >
+        </div>
+        <div id="faq8">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>g</span></a
+          >
+        </div>
+        <div id="faq9">
+          <a href="" id="faq"
+            ><i class="fa-solid fa-chevron-down"></i><span>h</span></a
+          >
+        </div>
+      </div>
     </main>
     <footer><span>desenvolvido por Leonardo e Heitor</span></footer>
-</body>
-
+  </body>
 </html>
